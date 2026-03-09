@@ -143,7 +143,7 @@ vendor/bin/phpunit
 Current progress:
 
 * [x] Docker environment setup
-* [ ] Authentication API
+* [x] Authentication API
 * [ ] Client management
 * [ ] Notification system
 * [ ] Task management
