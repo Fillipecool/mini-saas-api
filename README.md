@@ -144,7 +144,7 @@ Current progress:
 
 * [x] Docker environment setup
 * [x] Authentication API
-* [ ] Client management
+* [x] Client management
 * [ ] Notification system
 * [ ] Task management
 * [ ] Financial module
