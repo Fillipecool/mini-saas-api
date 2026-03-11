@@ -148,7 +148,7 @@ Current progress:
 * [ ] Notification system
 * [ ] Task management
 * [ ] Financial module
-* [ ] Automated tests
+* [x] Automated tests
 
 ---
 
