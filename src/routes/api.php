@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ClientController;
+use App\Http\Controllers\Api\NotificationController;
 use Illuminate\Http\Request;
 
 // --------------------
@@ -24,5 +25,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('clients', ClientController::class);
 
-    // TODO: Tasks, Notifications, Transactions
+    Route::apiResource('notifications', NotificationController::class)
+        ->only(['index','store']);
 });
