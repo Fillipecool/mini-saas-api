@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendNotificationJob;
 use App\Models\Client;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,13 @@ class ClientController extends Controller
 
         $client = Client::create($validated);
 
+        SendNotificationJob::dispatch(
+            $request->user()->id,
+            'Client created',
+            "Client {$client->name} (ID: {$client->id}) was created.",
+            'client'
+        );
+
         return response()->json($client, 201);
     }
 
@@ -44,6 +52,13 @@ class ClientController extends Controller
         ]);
 
         $client->update($validated);
+
+        SendNotificationJob::dispatch(
+            $request->user()->id,
+            'Client updated',
+            "Client {$client->name} was updated.",
+            'client'
+        );
 
         return response()->json($client);
     }

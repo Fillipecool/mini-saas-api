@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Client;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Queue;
+use App\Jobs\SendNotificationJob;
 
 class ClientTest extends TestCase
 {
@@ -31,6 +33,24 @@ class ClientTest extends TestCase
 
         $response->assertStatus(200)
                  ->assertJsonCount(3);
+    }
+
+    public function test_client_creation_dispatches_notification_job()
+    {
+        Queue::fake();
+
+        $user = User::factory()->create();
+
+        Sanctum::actingAs($user);
+
+        $data = [
+            'name' => 'Client Test',
+            'email' => 'client@test.com'
+        ];
+
+        $this->postJson('/api/clients', $data);
+
+        Queue::assertPushed(SendNotificationJob::class);
     }
 
     public function test_authenticated_user_can_create_client()

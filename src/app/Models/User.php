@@ -34,6 +34,16 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+
+    /**
+     * Get the notifications for the user.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */ 
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
+
     /**
      * Get the attributes that should be cast.
      *
