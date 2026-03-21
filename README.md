@@ -146,8 +146,8 @@ Current progress:
 * [x] Authentication API
 * [x] Client management
 * [x] Notification system
-* [ ] Task management
-* [ ] Financial module
+* [x] Task management
+* [x] Financial module
 * [x] Automated tests
 
 ---
